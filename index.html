@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#38a8e8">
+<title>富士宮やきそば NOW</title>
+<style>
+:root {
+  --sky:#43b9ef; --sky2:#7ed7ff; --navy:#0f2b46; --ink:#1f3f59; --muted:#617b91;
+  --panel:rgba(255,255,255,.92); --line:rgba(18,78,119,.12); --shadow:0 16px 38px rgba(20,73,111,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255,255,255,.95), transparent 28%),
+    linear-gradient(180deg,#c9efff 0,#f6fbff 42%,#eef8ff 100%);
+  min-height:100vh;
+}
+header{
+  position:sticky;top:0;z-index:30;
+  padding:14px 16px 11px;
+  background:rgba(242,250,255,.86); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.8);
+}
+.top{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand strong{display:block;font-size:19px;letter-spacing:.02em;color:var(--navy)}
+.brand span{font-size:12px;color:var(--muted)}
+.badge{padding:8px 11px;border-radius:999px;background:linear-gradient(180deg,#fff,#e7f6ff);box-shadow:0 5px 12px rgba(15,94,145,.16), inset 0 1px 0 white;font-weight:800;font-size:12px}
+main{max-width:1120px;margin:auto;padding:16px 16px 90px}
+.hero{
+  position:relative;overflow:hidden;border-radius:28px;padding:28px 20px 24px;
+  background:linear-gradient(145deg,#1f91d0,#63caff 55%,#b8edff);
+  color:white;box-shadow:0 22px 50px rgba(27,105,154,.28);
+}
+.hero:after{content:"富士山";position:absolute;right:-8px;bottom:-22px;font-size:104px;font-weight:1000;opacity:.06;transform:rotate(-8deg)}
+.hero h1{margin:0 0 9px;font-size:30px;line-height:1.12}
+.hero p{margin:0;line-height:1.85;font-size:14px;max-width:760px;text-shadow:0 1px 1px rgba(0,0,0,.08)}
+.sources{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;max-width:620px}
+.source-btn{
+  display:flex;align-items:center;justify-content:center;text-decoration:none;color:#144764;
+  background:linear-gradient(180deg,#fff,#e9f7ff);border-radius:15px;padding:12px 10px;font-weight:900;
+  box-shadow:0 7px 16px rgba(12,78,122,.18),inset 0 1px 0 white;
+}
+.source-btn:active{transform:translateY(2px);box-shadow:0 3px 8px rgba(12,78,122,.16)}
+.about{
+  margin-top:16px;padding:19px;border-radius:22px;background:rgba(255,255,255,.94);
+  box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.8)
+}
+.about h2{font-size:18px;margin:0 0 8px;color:var(--navy)}
+.about p{margin:0;font-size:14px;line-height:1.9}
+.controls{
+  margin-top:18px;padding:14px;border-radius:22px;background:rgba(255,255,255,.9);
+  box-shadow:var(--shadow);display:grid;gap:10px
+}
+.search{
+  width:100%;border:1px solid rgba(29,109,159,.13);outline:none;border-radius:16px;padding:15px 16px;
+  font-size:16px;color:var(--navy);background:linear-gradient(180deg,#fff,#f4fbff);
+  box-shadow:inset 0 2px 4px rgba(16,77,117,.06),0 6px 14px rgba(29,94,137,.1)
+}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{
+  border:0;border-radius:14px;padding:11px 14px;font-weight:900;color:#17445f;
+  background:linear-gradient(180deg,#fff,#e6f6ff);box-shadow:0 6px 13px rgba(15,85,130,.14),inset 0 1px white;cursor:pointer
+}
+button.active{color:white;background:linear-gradient(180deg,#52c0f3,#259bd8)}
+.meta{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:22px 2px 11px}
+.meta h2{margin:0;color:var(--navy);font-size:22px}
+.count{font-size:13px;color:var(--muted);font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{
+  border-radius:23px;padding:17px;background:linear-gradient(155deg,rgba(255,255,255,.98),rgba(239,249,255,.98));
+  border:1px solid rgba(255,255,255,.95);box-shadow:0 13px 27px rgba(24,82,121,.14),inset 0 1px 0 white;
+  min-height:245px;display:flex;flex-direction:column
+}
+.tag{font-size:11px;font-weight:1000;letter-spacing:.04em;color:#1285bf;background:#e7f8ff;padding:6px 8px;border-radius:999px;align-self:flex-start}
+.card h3{font-size:18px;line-height:1.35;color:var(--navy);margin:10px 0 7px}
+.address,.phone,.distance{font-size:13px;line-height:1.55;color:#4e6d82;margin:3px 0}
+.desc{font-size:13px;line-height:1.7;color:#5c7284;margin:8px 0 12px;flex:1}
+.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card-actions a{text-decoration:none;text-align:center;padding:10px 8px;border-radius:13px;font-size:13px;font-weight:900;color:#164d6d;background:linear-gradient(180deg,#fff,#eaf8ff);box-shadow:0 5px 11px rgba(20,90,132,.12),inset 0 1px white}
+.card-actions a.primary{color:white;background:linear-gradient(180deg,#52c4f5,#218fc9)}
+.empty{padding:32px;text-align:center;color:var(--muted);background:white;border-radius:20px}
+.note{margin-top:18px;font-size:12px;line-height:1.7;color:#70879a}
+.bottom{
+  position:fixed;z-index:50;left:50%;bottom:10px;transform:translateX(-50%);
+  width:min(94%,620px);padding:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border:1px solid white;border-radius:20px;box-shadow:0 14px 36px rgba(15,68,105,.2)
+}
+.bottom a{text-decoration:none;text-align:center;color:#2e5b76;font-size:12px;font-weight:900;padding:10px 4px;border-radius:14px}
+.bottom a:first-child{background:#e8f7ff}
+@media(max-width:820px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){
+  main{padding:12px 12px 90px} .hero{border-radius:24px;padding:23px 17px 20px} .hero h1{font-size:26px}
+  .sources{grid-template-columns:1fr} .grid{grid-template-columns:1fr} .card{min-height:auto} .meta h2{font-size:20px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="brand"><strong>富士宮やきそば NOW</strong><span>富士宮市・食べられる店だけ</span></div>
+    <div class="badge">富士宮限定</div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <h1>今、富士宮やきそばを食べに行こう。</h1>
+  <p>富士宮市内で富士宮やきそばを食べられるお店を探すためのシンプルな検索アプリです。店名・住所で検索し、現在地を使えば近い順に並べ替えられます。</p>
+  <div class="sources">
+    <a class="source-btn" href="https://prosumer-inc.com" target="_blank" rel="noopener">prosumer-inc.com ↗</a>
+    <a class="source-btn" href="https://umya-yakisoba.com" target="_blank" rel="noopener">う宮！富士宮やきそば ↗</a>
+  </div>
+</section>
+
+<section class="about">
+  <h2>富士宮やきそばとは</h2>
+  <p>富士宮やきそばは、静岡県富士宮市を代表するご当地グルメです。コシと弾力を感じる独特の蒸し麺を使い、肉かすやキャベツなどと一緒に鉄板で焼き上げ、仕上げに削り粉を振りかけるのが代表的なスタイルです。店ごとにソースの味、麺の焼き加減、具材や仕上げが少しずつ違うので、食べ歩きで個性を比べる楽しさがあります。このアプリでは、一般的な飲食店一覧ではなく、富士宮やきそばを食べられる店に絞って探せます。</p>
+</section>
+
+<section class="controls" id="search">
+  <input class="search" id="q" type="search" placeholder="店名・住所で検索 例：宮町、淀師、朝霧">
+  <div class="actions">
+    <button id="near">📍 現在地から近い順</button>
+    <button id="nameSort">あいうえお順</button>
+    <button id="reset">並び順を戻す</button>
+  </div>
+</section>
+
+<div class="meta">
+  <h2>富士宮やきそばを食べられる店</h2>
+  <div class="count" id="count"></div>
+</div>
+<div class="grid" id="grid"></div>
+<div class="note">
+  ※ 掲載情報はアプリ用データです。営業時間・休業日・提供状況は変更される場合があるため、来店前に電話や店舗情報での確認をおすすめします。
+</div>
+</main>
+
+<nav class="bottom">
+  <a href="#home">ホーム</a>
+  <a href="#search">検索</a>
+  <a href="#search" id="bottomNear">現在地</a>
+</nav>
+
+<script>
+const shops = [{"name": "富士宮やきそばアンテナショップ", "address": "静岡県富士宮市宮町4-23 お宮横丁内", "phone": "0544-22-5341", "desc": "富士山本宮浅間大社の近く、お宮横丁内で富士宮やきそばを気軽に味わえる店舗です。", "lat": 35.2269, "lng": 138.6117}, {"name": "富士宮焼きそば＆ステーキ FUJIBOKU", "address": "静岡県富士宮市宮町4-22", "phone": "0544-57-9115", "desc": "お宮横丁周辺で富士宮やきそばを楽しめる飲食店です。観光途中にも立ち寄りやすい立地です。", "lat": 35.2268, "lng": 138.6118}, {"name": "富士宮やきそば専門店 すぎ本", "address": "静岡県富士宮市宮町4-23", "phone": "0544-24-8272", "desc": "お宮横丁内の富士宮やきそば専門店。中心市街地の散策と合わせて立ち寄りやすい店舗です。", "lat": 35.2269, "lng": 138.6117}, {"name": "むすびや", "address": "静岡県富士宮市宮町4-23", "phone": "0544-25-2144", "desc": "お宮横丁内で富士宮やきそばを提供する店舗です。浅間大社観光と組み合わせやすい場所にあります。", "lat": 35.2269, "lng": 138.6117}, {"name": "虹屋ミミ", "address": "静岡県富士宮市中央町3-9", "phone": "0544-24-0791", "desc": "富士宮駅周辺で富士宮やきそばを味わえる地元店です。", "lat": 35.2221, "lng": 138.6144}, {"name": "うるおいてい本店", "address": "静岡県富士宮市淀師415-2", "phone": "0544-24-7155", "desc": "富士宮やきそばを中心に鉄板料理を楽しめる地元店。市街地北西側にあります。", "lat": 35.2351, "lng": 138.6}, {"name": "お好み食堂 伊東", "address": "静岡県富士宮市淀師1117-8", "phone": "0544-26-8725", "desc": "富士宮やきそばを食べられる昔ながらの食堂。地元らしい雰囲気で楽しめます。", "lat": 35.244, "lng": 138.595}, {"name": "さがみ", "address": "静岡県富士宮市東町18-7", "phone": "", "desc": "富士宮市東町エリアで富士宮やきそばを提供する地元店です。", "lat": 35.221, "lng": 138.6196}, {"name": "富士宮焼きそば まる忠", "address": "静岡県富士宮市山宮2113-1", "phone": "090-6766-4118", "desc": "山宮エリアで富士宮やきそばを提供する店舗。市街地北側からも利用しやすいお店です。", "lat": 35.2712, "lng": 138.6367}, {"name": "富士宮焼きそば お好み焼 めぐみ", "address": "静岡県富士宮市淀師86-1", "phone": "090-4191-0142", "desc": "富士宮やきそばとお好み焼きを楽しめる地元店です。", "lat": 35.2303, "lng": 138.605}, {"name": "はっちゃん", "address": "静岡県富士宮市北町20-1", "phone": "0544-27-2575", "desc": "北町エリアにある、富士宮やきそばを提供する地元店です。", "lat": 35.2309, "lng": 138.6135}, {"name": "なごみや", "address": "静岡県富士宮市小泉2862", "phone": "0544-24-1714", "desc": "小泉エリアで富士宮やきそばを味わえる店舗です。", "lat": 35.2125, "lng": 138.6492}, {"name": "天神橋", "address": "静岡県富士宮市上井出825-6", "phone": "0544-54-0520", "desc": "上井出エリアで富士宮やきそばを提供する店舗です。朝霧高原方面への移動途中にも立ち寄れます。", "lat": 35.3196, "lng": 138.5904}, {"name": "富士宮やきそば め.め", "address": "静岡県富士宮市宮原385-9", "phone": "090-1783-3665", "desc": "宮原エリアで富士宮やきそばを提供する店舗です。", "lat": 35.258, "lng": 138.6103}, {"name": "道の駅 朝霧高原 富士宮焼きそば", "address": "静岡県富士宮市根原492-14", "phone": "", "desc": "朝霧高原エリアで富士宮やきそばを味わえるスポット。観光ドライブの途中に立ち寄りやすい場所です。", "lat": 35.4141, "lng": 138.589}];
+let list = [...shops];
+let userPos = null;
+
+const grid = document.getElementById('grid');
+const q = document.getElementById('q');
+const count = document.getElementById('count');
+
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function norm(s) {
+  return String(s ?? '').normalize('NFKC').toLowerCase().replace(/\s+/g,'');
+}
+function distKm(a,b,c,d) {
+  const R=6371, rad=x=>x*Math.PI/180;
+  const x=rad(c-a), y=rad(d-b);
+  const h=Math.sin(x/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(y/2)**2;
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+function render() {
+  const term = norm(q.value);
+  let shown = list.filter(s => !term || norm(s.name+s.address+s.desc).includes(term));
+  count.textContent = `${shown.length}店表示`;
+  if(!shown.length) {
+    grid.innerHTML = '<div class="empty">条件に合うお店が見つかりませんでした。</div>';
+    return;
+  }
+  grid.innerHTML = shown.map(s => {
+    const tel = s.phone ? `<a href="tel:${esc(s.phone)}">電話する</a>` : `<a href="javascript:void(0)" style="opacity:.5">電話情報なし</a>`;
+    const mapUrl = 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(s.address || s.name);
+    const routeUrl = userPos
+      ? 'https://www.google.com/maps/dir/?api=1&origin='+userPos.lat+','+userPos.lng+'&destination='+encodeURIComponent(s.address || s.name)
+      : mapUrl;
+    let d='';
+    if(userPos && Number.isFinite(s.lat) && Number.isFinite(s.lng)) {
+      d = `<div class="distance">現在地から 約 ${distKm(userPos.lat,userPos.lng,s.lat,s.lng).toFixed(1)} km</div>`;
+    }
+    return `<article class="card">
+      <span class="tag">富士宮やきそば</span>
+      <h3>${esc(s.name)}</h3>
+      <div class="address">📍 ${esc(s.address)}</div>
+      ${s.phone ? `<div class="phone">☎ ${esc(s.phone)}</div>` : ''}
+      ${d}
+      <p class="desc">${esc(s.desc)}</p>
+      <div class="card-actions">
+        ${tel}
+        <a class="primary" href="${routeUrl}" target="_blank" rel="noopener">${userPos ? '現在地から行く' : '地図で見る'}</a>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+q.addEventListener('input', render);
+document.getElementById('nameSort').addEventListener('click', () => {
+  list.sort((a,b)=>a.name.localeCompare(b.name,'ja'));
+  document.getElementById('near').classList.remove('active');
+  render();
+});
+document.getElementById('reset').addEventListener('click', () => {
+  list=[...shops]; userPos=null;
+  document.getElementById('near').classList.remove('active');
+  render();
+});
+function nearSort() {
+  if(!navigator.geolocation) return alert('この端末では現在地を取得できません。');
+  navigator.geolocation.getCurrentPosition(pos => {
+    userPos={lat:pos.coords.latitude,lng:pos.coords.longitude};
+    list.sort((a,b)=>distKm(userPos.lat,userPos.lng,a.lat,a.lng)-distKm(userPos.lat,userPos.lng,b.lat,b.lng));
+    document.getElementById('near').classList.add('active');
+    render();
+  }, () => alert('現在地の利用が許可されていません。iPhoneの設定で位置情報を許可してください。'), {enableHighAccuracy:true, timeout:10000});
+}
+document.getElementById('near').addEventListener('click', nearSort);
+document.getElementById('bottomNear').addEventListener('click', e => {e.preventDefault(); nearSort(); location.hash='search';});
+render();
+</script>
+</body>
+</html>
