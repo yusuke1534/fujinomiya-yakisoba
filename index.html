@@ -79,8 +79,9 @@ button.active{color:white;background:linear-gradient(180deg,#52c0f3,#259bd8)}
 .tag{font-size:11px;font-weight:1000;letter-spacing:.04em;color:#1285bf;background:#e7f8ff;padding:6px 8px;border-radius:999px;align-self:flex-start}
 .card h3{font-size:18px;line-height:1.35;color:var(--navy);margin:10px 0 7px}
 .address,.phone,.distance{font-size:13px;line-height:1.55;color:#4e6d82;margin:3px 0}
+.store-detail{font-size:13px;line-height:1.65;color:#405f75;margin:4px 0;padding:7px 9px;border-radius:11px;background:rgba(224,246,255,.72)}
 .desc{font-size:13px;line-height:1.7;color:#5c7284;margin:8px 0 12px;flex:1}
-.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .card-actions a{text-decoration:none;text-align:center;padding:10px 8px;border-radius:13px;font-size:13px;font-weight:900;color:#164d6d;background:linear-gradient(180deg,#fff,#eaf8ff);box-shadow:0 5px 11px rgba(20,90,132,.12),inset 0 1px white}
 .card-actions a.primary{color:white;background:linear-gradient(180deg,#52c4f5,#218fc9)}
 .empty{padding:32px;text-align:center;color:var(--muted);background:white;border-radius:20px}
@@ -148,7 +149,7 @@ button.active{color:white;background:linear-gradient(180deg,#52c0f3,#259bd8)}
 </nav>
 
 <script>
-const shops = [{"name": "富士宮やきそばアンテナショップ", "address": "静岡県富士宮市宮町4-23 お宮横丁内", "phone": "0544-22-5341", "desc": "富士山本宮浅間大社の近く、お宮横丁内で富士宮やきそばを気軽に味わえる店舗です。", "lat": 35.2269, "lng": 138.6117}, {"name": "富士宮焼きそば＆ステーキ FUJIBOKU", "address": "静岡県富士宮市宮町4-22", "phone": "0544-57-9115", "desc": "お宮横丁周辺で富士宮やきそばを楽しめる飲食店です。観光途中にも立ち寄りやすい立地です。", "lat": 35.2268, "lng": 138.6118}, {"name": "富士宮やきそば専門店 すぎ本", "address": "静岡県富士宮市宮町4-23", "phone": "0544-24-8272", "desc": "お宮横丁内の富士宮やきそば専門店。中心市街地の散策と合わせて立ち寄りやすい店舗です。", "lat": 35.2269, "lng": 138.6117}, {"name": "むすびや", "address": "静岡県富士宮市宮町4-23", "phone": "0544-25-2144", "desc": "お宮横丁内で富士宮やきそばを提供する店舗です。浅間大社観光と組み合わせやすい場所にあります。", "lat": 35.2269, "lng": 138.6117}, {"name": "虹屋ミミ", "address": "静岡県富士宮市中央町3-9", "phone": "0544-24-0791", "desc": "富士宮駅周辺で富士宮やきそばを味わえる地元店です。", "lat": 35.2221, "lng": 138.6144}, {"name": "うるおいてい本店", "address": "静岡県富士宮市淀師415-2", "phone": "0544-24-7155", "desc": "富士宮やきそばを中心に鉄板料理を楽しめる地元店。市街地北西側にあります。", "lat": 35.2351, "lng": 138.6}, {"name": "お好み食堂 伊東", "address": "静岡県富士宮市淀師1117-8", "phone": "0544-26-8725", "desc": "富士宮やきそばを食べられる昔ながらの食堂。地元らしい雰囲気で楽しめます。", "lat": 35.244, "lng": 138.595}, {"name": "さがみ", "address": "静岡県富士宮市東町18-7", "phone": "", "desc": "富士宮市東町エリアで富士宮やきそばを提供する地元店です。", "lat": 35.221, "lng": 138.6196}, {"name": "富士宮焼きそば まる忠", "address": "静岡県富士宮市山宮2113-1", "phone": "090-6766-4118", "desc": "山宮エリアで富士宮やきそばを提供する店舗。市街地北側からも利用しやすいお店です。", "lat": 35.2712, "lng": 138.6367}, {"name": "富士宮焼きそば お好み焼 めぐみ", "address": "静岡県富士宮市淀師86-1", "phone": "090-4191-0142", "desc": "富士宮やきそばとお好み焼きを楽しめる地元店です。", "lat": 35.2303, "lng": 138.605}, {"name": "はっちゃん", "address": "静岡県富士宮市北町20-1", "phone": "0544-27-2575", "desc": "北町エリアにある、富士宮やきそばを提供する地元店です。", "lat": 35.2309, "lng": 138.6135}, {"name": "なごみや", "address": "静岡県富士宮市小泉2862", "phone": "0544-24-1714", "desc": "小泉エリアで富士宮やきそばを味わえる店舗です。", "lat": 35.2125, "lng": 138.6492}, {"name": "天神橋", "address": "静岡県富士宮市上井出825-6", "phone": "0544-54-0520", "desc": "上井出エリアで富士宮やきそばを提供する店舗です。朝霧高原方面への移動途中にも立ち寄れます。", "lat": 35.3196, "lng": 138.5904}, {"name": "富士宮やきそば め.め", "address": "静岡県富士宮市宮原385-9", "phone": "090-1783-3665", "desc": "宮原エリアで富士宮やきそばを提供する店舗です。", "lat": 35.258, "lng": 138.6103}, {"name": "道の駅 朝霧高原 富士宮焼きそば", "address": "静岡県富士宮市根原492-14", "phone": "", "desc": "朝霧高原エリアで富士宮やきそばを味わえるスポット。観光ドライブの途中に立ち寄りやすい場所です。", "lat": 35.4141, "lng": 138.589}];
+const shops = [{"name": "富士宮やきそばアンテナショップ", "address": "静岡県富士宮市宮町4-23 お宮横丁内", "phone": "0544-22-5341", "desc": "富士山本宮浅間大社の近く、お宮横丁内で富士宮やきそばを気軽に味わえる店舗です。", "lat": 35.2269, "lng": 138.6117, "site": "https://prosumer-inc.com/our-store/"}, {"name": "富士宮焼きそば＆ステーキ FUJIBOKU", "address": "静岡県富士宮市宮町4-22", "phone": "0544-57-9115", "desc": "お宮横丁周辺で富士宮やきそばを楽しめる飲食店です。観光途中にも立ち寄りやすい立地です。", "lat": 35.2268, "lng": 138.6118, "site": "https://shop.fujiboku.jp/chef/restaurant/fujiboku-2-2-3/", "regular_holiday": "水曜日・第3火曜日", "opening_hours": "ランチ 11:30～15:00（L.O.14:50）／ディナー 17:00～22:00（L.O.21:00）※日曜は21:00閉店"}, {"name": "富士宮やきそば専門店 すぎ本", "address": "静岡県富士宮市宮町4-23", "phone": "0544-24-8272", "desc": "お宮横丁内の富士宮やきそば専門店。中心市街地の散策と合わせて立ち寄りやすい店舗です。", "lat": 35.2269, "lng": 138.6117}, {"name": "むすびや", "address": "静岡県富士宮市宮町4-23", "phone": "0544-25-2144", "desc": "お宮横丁内で富士宮やきそばを提供する店舗です。浅間大社観光と組み合わせやすい場所にあります。", "lat": 35.2269, "lng": 138.6117}, {"name": "虹屋ミミ", "address": "静岡県富士宮市中央町3-9", "phone": "0544-24-0791", "desc": "富士宮駅周辺で富士宮やきそばを味わえる地元店です。", "lat": 35.2221, "lng": 138.6144}, {"name": "うるおいてい本店", "address": "静岡県富士宮市淀師415-2", "phone": "0544-24-7155", "desc": "富士宮やきそばを中心に鉄板料理を楽しめる地元店。市街地北西側にあります。", "lat": 35.2351, "lng": 138.6}, {"name": "お好み食堂 伊東", "address": "静岡県富士宮市淀師1117-8", "phone": "0544-26-8725", "desc": "富士宮やきそばを食べられる昔ながらの食堂。地元らしい雰囲気で楽しめます。", "lat": 35.244, "lng": 138.595}, {"name": "さがみ", "address": "静岡県富士宮市東町18-7", "phone": "", "desc": "富士宮市東町エリアで富士宮やきそばを提供する地元店です。", "lat": 35.221, "lng": 138.6196}, {"name": "富士宮焼きそば まる忠", "address": "静岡県富士宮市山宮2113-1", "phone": "090-6766-4118", "desc": "山宮エリアで富士宮やきそばを提供する店舗。市街地北側からも利用しやすいお店です。", "lat": 35.2712, "lng": 138.6367}, {"name": "富士宮焼きそば お好み焼 めぐみ", "address": "静岡県富士宮市淀師86-1", "phone": "090-4191-0142", "desc": "富士宮やきそばとお好み焼きを楽しめる地元店です。", "lat": 35.2303, "lng": 138.605}, {"name": "はっちゃん", "address": "静岡県富士宮市北町20-1", "phone": "0544-27-2575", "desc": "北町エリアにある、富士宮やきそばを提供する地元店です。", "lat": 35.2309, "lng": 138.6135}, {"name": "なごみや", "address": "静岡県富士宮市小泉2862", "phone": "0544-24-1714", "desc": "小泉エリアで富士宮やきそばを味わえる店舗です。", "lat": 35.2125, "lng": 138.6492}, {"name": "天神橋", "address": "静岡県富士宮市上井出825-6", "phone": "0544-54-0520", "desc": "上井出エリアで富士宮やきそばを提供する店舗です。朝霧高原方面への移動途中にも立ち寄れます。", "lat": 35.3196, "lng": 138.5904}, {"name": "富士宮やきそば め.め", "address": "静岡県富士宮市宮原385-9", "phone": "090-1783-3665", "desc": "宮原エリアで富士宮やきそばを提供する店舗です。", "lat": 35.258, "lng": 138.6103}, {"name": "道の駅 朝霧高原 富士宮焼きそば", "address": "静岡県富士宮市根原492-14", "phone": "", "desc": "朝霧高原エリアで富士宮やきそばを味わえるスポット。観光ドライブの途中に立ち寄りやすい場所です。", "lat": 35.4141, "lng": 138.589}];
 let list = [...shops];
 let userPos = null;
 
@@ -186,15 +187,27 @@ function render() {
     if(userPos && Number.isFinite(s.lat) && Number.isFinite(s.lng)) {
       d = `<div class="distance">現在地から 約 ${distKm(userPos.lat,userPos.lng,s.lat,s.lng).toFixed(1)} km</div>`;
     }
+    const site = s.site
+      ? `<a href="${esc(s.site)}" target="_blank" rel="noopener">公式ホームページ</a>`
+      : '';
+    const hours = s.opening_hours
+      ? `<div class="store-detail">🕒 営業時間：${esc(s.opening_hours)}</div>`
+      : '';
+    const holiday = s.regular_holiday
+      ? `<div class="store-detail">📅 定休日：${esc(s.regular_holiday)}</div>`
+      : '';
     return `<article class="card">
       <span class="tag">富士宮やきそば</span>
       <h3>${esc(s.name)}</h3>
       <div class="address">📍 ${esc(s.address)}</div>
       ${s.phone ? `<div class="phone">☎ ${esc(s.phone)}</div>` : ''}
+      ${hours}
+      ${holiday}
       ${d}
       <p class="desc">${esc(s.desc)}</p>
       <div class="card-actions">
         ${tel}
+        ${site}
         <a class="primary" href="${routeUrl}" target="_blank" rel="noopener">${userPos ? '現在地から行く' : '地図で見る'}</a>
       </div>
     </article>`;
